@@ -20,7 +20,6 @@ class Clinic:
         return self.__last_generated_code.next()
 
     def callNextAppointment(self) -> Appointment:
-        # TODO: Melhorar validação
         if not self.__appointments.empty():
             return self.__appointments.get()
         return Appointment(0, '')

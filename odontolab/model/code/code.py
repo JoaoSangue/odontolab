@@ -1,7 +1,4 @@
 class Code:
-    """ Code class for managing service priority
-    """
-
     def __init__(self) -> None:
         self.__value = 0;
     
