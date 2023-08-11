@@ -1,7 +1,8 @@
 from queue import SimpleQueue as Queue
 
-from ..code import Code
-from ..appointment import Appointment
+from odontolab.model.code import Code
+from odontolab.model.appointment import Appointment
+
 
 class Clinic:
     def __init__(self) -> None:

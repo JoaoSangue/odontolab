@@ -1,6 +1,6 @@
 from flask import Flask
 
-from odontolab.controller.controller import Controller
+from odontolab.controller import Controller
 
 app = Flask(__name__)
 

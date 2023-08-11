@@ -1,1 +1,1 @@
-from .code import Code
+from odontolab.model.code.code import Code

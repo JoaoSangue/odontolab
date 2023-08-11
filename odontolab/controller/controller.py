@@ -1,4 +1,4 @@
-from flask import Flask, abort
+from flask import Flask
 from odontolab.controller.appointment import AppointmentRouter
 from odontolab.controller.code import CodeRouter
 from odontolab.controller.patient import PatientRouter
