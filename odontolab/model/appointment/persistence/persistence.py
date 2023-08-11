@@ -1,9 +1,9 @@
 from odontolab.model.appointment.appointment import Appointment
-from odontolab.model.appointment.appointmentdao import AppointmentDAO
-from odontolab.model.patient.patient import Patient
+from odontolab.model.appointment.persistence.appointmentdao import AppointmentDAO
+from odontolab.model.utils.singleton import SingletonMeta
 
 
-class Persistence(AppointmentDAO):
+class Persistence(AppointmentDAO, metaclass=SingletonMeta):
     """ Implements a AppointmentDAO using a dict in memmory
     """
 
@@ -25,11 +25,11 @@ class Persistence(AppointmentDAO):
 
         return appointment, False
     
-    def queryByPatient(self, patient: Patient) -> tuple[list[Appointment], bool]:
+    def queryByPatient(self, patient_id: int) -> tuple[list[Appointment], bool]:
         patientAppointments: list[Appointment] = []
 
         for appointment in self.__appointments.values():
-            if appointment.patient_id == patient.id:
+            if appointment.patient_id == patient_id:
                 patientAppointments.append(appointment)
 
         return  patientAppointments, True

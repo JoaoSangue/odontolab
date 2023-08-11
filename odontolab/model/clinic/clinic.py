@@ -3,7 +3,6 @@ from queue import SimpleQueue as Queue
 from ..code import Code
 from ..appointment import Appointment
 
-# TODO: Validar transformar em um Manager Pattern ou em Singleton
 class Clinic:
     def __init__(self) -> None:
         self.__currently_serving_code: Code = Code()

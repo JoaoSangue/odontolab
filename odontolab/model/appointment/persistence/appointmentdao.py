@@ -1,6 +1,5 @@
 import abc
 
-from odontolab.model.patient.patient import Patient
 from odontolab.model.appointment.appointment import Appointment
 
 
@@ -18,6 +17,6 @@ class AppointmentDAO(metaclass=abc.ABCMeta):
         return
 
     @abc.abstractmethod
-    def queryByPatient(self, patient: Patient) -> tuple[list[Appointment], bool]:
+    def queryByPatient(self, patient_id: int) -> tuple[list[Appointment], bool]:
         return
 
