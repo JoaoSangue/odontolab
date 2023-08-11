@@ -32,7 +32,7 @@ class Patient:
             print('Invalid phone for patient')
             return False
 
-    def create(self) -> tuple[Patient, bool]:
+    def save(self) -> tuple[Patient, bool]:
         if not self.__isValid():
             return self, False
 

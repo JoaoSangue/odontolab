@@ -19,11 +19,15 @@ class Clinic:
     def generateNextServiceCode(self) -> int:
         return self.__last_generated_code.next()
 
-    def callNextAppointment(self) -> Appointment:
-        if not self.__appointments.empty():
-            return self.__appointments.get()
-        return Appointment(0, '')
+    def callNextAppointment(self) -> tuple[Appointment, bool]:
+        if self.__appointments.empty():
+            return Appointment(0, ''), False
+        return self.__appointments.get(), True
 
-    def queueAppointment(self, patient_id: int, reason: str) -> None:
-        newAppointment = Appointment(patient_id, reason)
-        self.__appointments.put(newAppointment)
+    def queueAppointment(self, patient_id: int, reason: str) -> bool:
+        appointment, ok = Appointment(patient_id, reason).create()
+        if not ok:
+            return False
+        
+        self.__appointments.put(appointment)
+        return True

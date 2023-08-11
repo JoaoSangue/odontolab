@@ -24,7 +24,7 @@ class Appointment:
             print('Invalid reason for appointment')
             return False
 
-    def create(self) -> tuple[Appointment, bool]:
+    def save(self) -> tuple[Appointment, bool]:
         if not self.isValid():
             return self, False
 
