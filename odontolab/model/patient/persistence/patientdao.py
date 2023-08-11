@@ -4,7 +4,7 @@ from odontolab.model.patient.patient import Patient
 
 
 class PatientDAO(metaclass=abc.ABCMeta):
-    """ DAO interface for Appointment.
+    """ DAO interface for Patient.
         Defines methods for persisting and accessing patients.
     """
 
@@ -13,5 +13,5 @@ class PatientDAO(metaclass=abc.ABCMeta):
         return
 
     @abc.abstractmethod
-    def findByCPF(self, cpf: str) -> tuple[Patient, bool]:
+    def find(self, cpf: str) -> tuple[Patient, bool]:
         return

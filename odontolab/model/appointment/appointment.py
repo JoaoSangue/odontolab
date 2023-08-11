@@ -1,8 +1,7 @@
 from __future__ import annotations
 from datetime import date
 
-from odontolab.model.appointment.persistence import AppointmentDAO
-from odontolab.model.patient.persistence import Persistence
+from odontolab.model.appointment.persistence import AppointmentDAO, Persistence
 
 
 class Appointment:
@@ -16,7 +15,7 @@ class Appointment:
         self.date: date = date.today
         self.reason: str = reason
 
-    def __validate(self) -> bool:
+    def __isValid(self) -> bool:
         if self.patient_id <= 0:
             print('Invalid patient ID for appointment')
             return False
@@ -26,13 +25,13 @@ class Appointment:
             return False
 
     def create(self) -> tuple[Appointment, bool]:
-        if not self.validate():
+        if not self.isValid():
             return self, False
 
         return self.__persistence.create(self)
 
     def update(self) -> tuple[Appointment, bool]:
-        if not self.validate():
+        if not self.isValid():
             return self, False
 
         if self.details.strip() == '':
