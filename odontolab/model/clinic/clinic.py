@@ -4,31 +4,38 @@ from odontolab.model.code import Code
 from odontolab.model.appointment import Appointment
 
 
-class Clinic:
-    def __init__(self) -> None:
-        self.__currently_serving_code: Code = Code()
-        self.__last_generated_code: Code = Code()
+class Clinic():
+    __currently_serving_code: Code = Code()
+    __last_generated_code: Code = Code()
 
-        self.__appointments: Queue[Appointment] = Queue()
+    __appointments: Queue[Appointment] = Queue()
 
-    def currentlyServing(self) -> int:
-        return self.__currently_serving_code.current()
+    def __new__(cls):
+        raise TypeError(f"'{cls.__name__}' is static and cannot be instantiated")
 
-    def callNextServiceCode(self) -> int:
-        return self.__currently_serving_code.next()
+    @classmethod
+    def currentlyServing(cls) -> int:
+        return cls.__currently_serving_code.current()
 
-    def generateNextServiceCode(self) -> int:
-        return self.__last_generated_code.next()
+    @classmethod
+    def callNextServiceCode(cls) -> int:
+        return cls.__currently_serving_code.next()
 
-    def callNextAppointment(self) -> tuple[Appointment, bool]:
-        if self.__appointments.empty():
+    @classmethod
+    def generateNextServiceCode(cls) -> int:
+        return cls.__last_generated_code.next()
+
+    @classmethod
+    def callNextAppointment(cls) -> tuple[Appointment, bool]:
+        if cls.__appointments.empty():
             return Appointment(0, ''), False
-        return self.__appointments.get(), True
+        return cls.__appointments.get(), True
 
-    def queueAppointment(self, patient_id: int, reason: str) -> bool:
+    @classmethod
+    def queueAppointment(cls, patient_id: int, reason: str) -> bool:
         appointment, ok = Appointment(patient_id, reason).save()
         if not ok:
             return False
         
-        self.__appointments.put(appointment)
+        cls.__appointments.put(appointment)
         return True
