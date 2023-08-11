@@ -7,6 +7,7 @@ class PatientRouter(Router):
         self.__app = app
 
     def defineRoutes(self):
+
         @self.__app.get('/patients/')
         def patient_search_view():
             """ Renders view for querying patients by their CPF

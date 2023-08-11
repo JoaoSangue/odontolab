@@ -19,6 +19,7 @@ class Controller(Router):
         def index():
             """ Home page view
             """
+
             return 'Index Page'
 
         for router in self.__routers:

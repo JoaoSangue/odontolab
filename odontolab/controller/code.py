@@ -7,6 +7,7 @@ class CodeRouter(Router):
         self.__app = app
 
     def defineRoutes(self):
+
         @self.__app.get('/code/')
         def current_service_code_view():
             """ Renders view for querying current service code priority
