@@ -25,13 +25,13 @@ class Appointment:
             return False
 
     def save(self) -> tuple[Appointment, bool]:
-        if not self.isValid():
+        if not self.__isValid():
             return self, False
 
         return self.__persistence.create(self)
 
     def update(self) -> tuple[Appointment, bool]:
-        if not self.isValid():
+        if not self.__isValid():
             return self, False
 
         if self.details.strip() == '':
@@ -40,5 +40,6 @@ class Appointment:
 
         return self.__persistence.update(self)
 
-    def queryByPatient(self, patient_id: int) -> tuple[list[Appointment], bool]:
-        return self.__persistence.queryByPatient(self, patient_id)
+    @classmethod
+    def findByPatient(cls, patient_id: int) -> tuple[list[Appointment], bool]:
+        return cls.__persistence.queryByPatient(patient_id)

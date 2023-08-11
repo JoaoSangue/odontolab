@@ -25,7 +25,7 @@ class Clinic:
         return self.__appointments.get(), True
 
     def queueAppointment(self, patient_id: int, reason: str) -> bool:
-        appointment, ok = Appointment(patient_id, reason).create()
+        appointment, ok = Appointment(patient_id, reason).save()
         if not ok:
             return False
         

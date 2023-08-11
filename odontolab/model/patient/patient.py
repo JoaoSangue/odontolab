@@ -38,5 +38,6 @@ class Patient:
 
         return self.__persistence.create(self)
 
-    def findByCPF(self, cpf: str) -> tuple[Patient, bool]:
-        return self.__persistence.find(cpf)
+    @classmethod
+    def findByCPF(cls, cpf: str) -> tuple[Patient, bool]:
+        return cls.__persistence.find(cpf)
