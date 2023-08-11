@@ -8,7 +8,7 @@ class Clinic:
         self.__currently_serving_code: Code = Code()
         self.__last_generated_code: Code = Code()
 
-        self.__appointments: Queue = Queue()
+        self.__appointments: Queue[Appointment] = Queue()
 
     def currentlyServing(self) -> int:
         return self.__currently_serving_code.current()

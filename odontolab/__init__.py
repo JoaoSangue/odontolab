@@ -1,29 +1,13 @@
 from flask import Flask, abort, render_template
 from markupsafe import escape
-from .controller.routes import defineRoutes
+
+from odontolab.controller.controller import Controller
 
 app = Flask(__name__)
 
 
-# View routes
-
-@app.route('/')
-def index():
-    """ Home page view
-    """
-    return 'Index Page'
-
-defineRoutes(app)
-
-# @app.route('/user/<username>')
-# def show_user_profile(username):
-#     # show the user profile for that user
-#     return f'User {escape(username)}'
-
-# @app.route('/post/<int:post_id>')
-# def show_post(post_id):
-#     # show the post with the given id, the id is an integer
-#     return f'Post {post_id}'
+controller = Controller(app)
+controller.defineRoutes()
 
 # @app.route('/path/<path:subpath>')
 # def show_subpath(subpath):

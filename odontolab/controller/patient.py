@@ -1,40 +1,43 @@
 from flask import Flask, abort, redirect, render_template, url_for
 
-def _definePatientsRoutes(app: Flask):
-    """ Define patients' routes
-    """
+from odontolab.controller.router import Router
 
-    @app.get('/patients/')
-    def patient_search_view():
-        """ Renders view for querying patients by their CPF
-        """
+class PatientRouter(Router):
+    def __init__(self, app: Flask):
+        self.__app = app
 
-        abort(501)
+    def defineRoutes(self):
+        @self.__app.get('/patients/')
+        def patient_search_view():
+            """ Renders view for querying patients by their CPF
+            """
 
-    @app.post('/patients/')
-    def search_patient():
-        """ Searches for a patient by CPF
-        """
+            abort(501)
 
-        # if found:
-        #     return redirect(url_for('appointment_creation_view', id=found.id))
-        # return redirect(url_for('patient_creation_view'))
-        abort(501)
+        @self.__app.post('/patients/')
+        def search_patient():
+            """ Searches for a patient by CPF
+            """
+
+            # if found:
+            #     return redirect(url_for('appointment_creation_view', id=found.id))
+            # return redirect(url_for('patient_creation_view'))
+            abort(501)
 
 
-    @app.get('/patients/new/')
-    def patient_creation_view():
-        """ Renders view for creating new patients
-        """
+        @self.__app.get('/patients/new/')
+        def patient_creation_view():
+            """ Renders view for creating new patients
+            """
 
-        abort(501)
-        return render_template('new_patient.html')
+            abort(501)
+            return render_template('new_patient.html')
 
-    @app.post('/patients/new/')
-    def create_patient():
-        """ Create new patient
-        """
+        @self.__app.post('/patients/new/')
+        def create_patient():
+            """ Create new patient
+            """
 
-        abort(501)
-        return redirect(url_for('appointment_creation_view'))
+            abort(501)
+            return redirect(url_for('appointment_creation_view'))
 
