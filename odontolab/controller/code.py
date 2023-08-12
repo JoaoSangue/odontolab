@@ -1,6 +1,7 @@
 from flask import Flask, abort, redirect, render_template, url_for
 
 from odontolab.controller.router import Router
+from odontolab.model.clinic import Clinic
 
 class CodeRouter(Router):
     def __init__(self, app: Flask):
@@ -14,7 +15,8 @@ class CodeRouter(Router):
             """
 
             abort(501)
-            return render_template('codes.html')
+            code = Clinic.currentlyServing()
+            return render_template('codes.html', code=code)
 
         @self.__app.post('/code/next/')
         def call_next_service_code():
