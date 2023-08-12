@@ -1,16 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
-  <!-- TODO: Adicionar outros campos e ajustar action do form -->
   <h1>Cadastro de paciente</h1>
-  <form method="post">
-      <label for="cpf">CPF</label>
-      <br>
-      <input
-        type="text" name="cpf"
-        placeholder="123.456.789-00"
-        value="{{ cpf }}">
-      </input>
-      <br>
-      <button type="submit">Submit</button>
+
+  {% if error %}
+    <ul class='error'>
+      <li>{{ error }}</li>
+    </ul>
+  {% endif %}
+
+  <form method="post" action="/patients/new/">
+    <label for="name">Nome</label>
+    <br>
+    <input
+      type="text" name="name"
+      placeholder=""
+      value="{{ request.form['name'] }}">
+    </input>
+    <br>
+
+    <label for="cpf">CPF</label>
+    <br>
+    <input
+      type="text" name="cpf"
+      placeholder="123.456.789-00"
+      value="{{ cpf or request.form['cpf'] }}">
+    </input>
+    <br>
+
+    <label for="birthdate">Data de Nascimento</label>
+    <br>
+    <input
+      type="date" name="birthdate"
+      value="{{ request.form['birthdate'] }}">
+    </input>
+    <br>
+
+    <label for="addr">Endereço</label>
+    <br>
+    <input
+      type="text" name="addr"
+      placeholder="Rua A - 001"
+      value="{{ request.form['addr'] }}">
+    </input>
+    <br>
+
+    <label for="phone">Telefone</label>
+    <br>
+    <input
+      type="text" name="phone"
+      placeholder="(22) 00000-0000"
+      value="{{ request.form['phone'] }}">
+    </input>
+    <br>
+    <button type="submit">Submit</button>
   </form>
 {% endblock %}

@@ -1,7 +1,7 @@
-from flask import Flask, abort, redirect, render_template, request, url_for
+from flask import Flask, abort, flash, redirect, render_template, request, url_for
 
 from odontolab.controller.router import Router
-from odontolab.model.patient import PatientService
+from odontolab.model.patient import PatientService, Patient
 
 class PatientRouter(Router):
     def __init__(self, app: Flask):
@@ -41,7 +41,14 @@ class PatientRouter(Router):
             """ Create new patient
             """
 
-            # TODO: Implementar
-            abort(501)
-            return redirect(url_for('appointment_creation_view'))
+            form = request.form.to_dict(True)
+            patient = Patient(**form)
+            patient, ok = PatientService.createPatient(patient)
+            if ok:
+                return redirect(url_for('appointment_creation_view', id=patient.id))
+            
+            # TODO: Fix error handling. It's showing same message for persistence errors
+            error = 'Campos inválidos ou vazios no formulário'
+            return render_template('new_patient.html', error=error)
+
 
