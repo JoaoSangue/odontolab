@@ -1,6 +1,7 @@
-from flask import Flask, abort, redirect, render_template, url_for
+from flask import Flask, abort, redirect, render_template, request, url_for
 
 from odontolab.controller.router import Router
+from odontolab.model.clinic import Clinic
 
 class AppointmentRouter(Router):
     def __init__(self, app: Flask):
@@ -30,16 +31,20 @@ class AppointmentRouter(Router):
             """ Renders view for creating new appointment for a patient
             """
             
-            abort(501)
-            return render_template('new_appointment.html')
+            return render_template('new_appointment.html', patient_id=id)
 
         @self.__app.post('/patients/<int:id>/appointments/new/')
-        def create_appointment(id):
+        def create_appointment(id: int):
             """ Creates new appointment for a patient
             """
             
-            abort(501)
-            return render_template('new_appointment.html')
+            reason = request.form['reason']
+            ok = Clinic.queueAppointment(id, reason)
+            if ok:
+                return render_template('appointment_created.html')
+            
+            error='Motivo da consulta não pode ficar em branco'
+            return render_template('new_appointment.html', patient_id=id, error=error)
         
 
         @self.__app.get('/patients/<int:id>/appointments/')

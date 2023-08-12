@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import date
 
 class Appointment:
-    def __init__(self, patient_id: int, reason: str):
+    def __init__(self, patient_id: int = 0, reason: str = ''):
         self.id: int = 0
         self.details: str = ''
 

@@ -34,7 +34,7 @@ class Clinic:
     @classmethod
     def queueAppointment(cls, patient_id: int, reason: str) -> bool:
         appointment = Appointment(patient_id, reason)
-        appointment, ok = AppointmentService.createAppointment(Appointment(patient_id, reason))
+        appointment, ok = AppointmentService.createAppointment(appointment)
         if not ok:
             return False
         

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Agendamento para o paciente</h1>
+
+  {% if error %}
+    <ul class='error'>
+      <li>{{ error }}</li>
+    </ul>
+  {% endif %}
+
+  <form method="post">
+    <label for="reason">Motivo</label>
+    <br>
+    <textarea
+      type="text" name="reason"
+      value="{{ request.form['reason'] }}"
+    ></textarea>
+    <br>
+
+    <button type="submit">Submit</button>
+  </form>
+{% endblock %}
