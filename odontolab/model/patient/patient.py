@@ -1,11 +1,6 @@
-from __future__ import annotations
 from datetime import date
 
-from odontolab.model.patient.persistence import PatientDAO, Persistence
-
 class Patient:
-    __persistence: PatientDAO = Persistence()
-
     def __init__(self, cpf: str, name: str, birthdate: int, addr: str, phone: str):
         self.id: int
 
@@ -32,12 +27,5 @@ class Patient:
             print('Invalid phone for patient')
             return False
 
-    def save(self) -> tuple[Patient, bool]:
-        if not self.__isValid():
-            return self, False
-
-        return self.__persistence.create(self)
-
-    @classmethod
-    def findByCPF(cls, cpf: str) -> tuple[Patient, bool]:
-        return cls.__persistence.find(cpf)
+    def canBeCreated(self) -> bool:
+        return self.__isValid()

@@ -1,1 +1,2 @@
-from odontolab.model.patient.patient import Patient
+from .patient import Patient
+from .service import PatientService

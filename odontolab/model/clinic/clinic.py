@@ -1,7 +1,7 @@
 from queue import SimpleQueue as Queue
 
 from odontolab.model.code import Code
-from odontolab.model.appointment import Appointment
+from odontolab.model.appointment import Appointment, AppointmentService
 
 
 class Clinic():
@@ -33,7 +33,8 @@ class Clinic():
 
     @classmethod
     def queueAppointment(cls, patient_id: int, reason: str) -> bool:
-        appointment, ok = Appointment(patient_id, reason).save()
+        appointment = Appointment(patient_id, reason)
+        appointment, ok = AppointmentService.createAppointment(Appointment(patient_id, reason))
         if not ok:
             return False
         

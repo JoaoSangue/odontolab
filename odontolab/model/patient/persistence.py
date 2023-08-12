@@ -1,5 +1,5 @@
 from odontolab.model.patient.patient import Patient
-from odontolab.model.patient.persistence.patientdao import PatientDAO
+from odontolab.model.patient.patientdao import PatientDAO
 from odontolab.model.utils.singleton import SingletonMeta
 
 

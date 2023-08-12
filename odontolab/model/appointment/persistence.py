@@ -1,7 +1,6 @@
 from odontolab.model.appointment.appointment import Appointment
-from odontolab.model.appointment.persistence.appointmentdao import AppointmentDAO
+from odontolab.model.appointment.appointmentdao import AppointmentDAO
 from odontolab.model.utils.singleton import SingletonMeta
-
 
 class Persistence(AppointmentDAO, metaclass=SingletonMeta):
     """ Implements a AppointmentDAO using a dict in memmory
