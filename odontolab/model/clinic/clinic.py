@@ -28,7 +28,7 @@ class Clinic:
     @classmethod
     def callNextAppointment(cls) -> tuple[Appointment, bool]:
         if cls.__appointments.empty():
-            return Appointment(0, ''), False
+            return Appointment(), False
         return cls.__appointments.get(), True
 
     @classmethod

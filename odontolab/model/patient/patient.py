@@ -1,7 +1,7 @@
 from datetime import date, datetime
 
 class Patient:
-    def __init__(self, cpf: str = '', name: str = '', birthdate: str = '', addr: str = '', phone: str = ''):
+    def __init__(self, cpf: str = '', name: str = '', birthdate: str = '0001-01-01', addr: str = '', phone: str = ''):
         self.id: int = 0
 
         self.cpf: str = cpf

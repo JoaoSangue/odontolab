@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+  {% if not found %}
+    <h2>Paciente não possui nenhuma ficha de atendimento</h2>
+  {% else %}
+    <h2>Consultas do paciente</h2>
+
+    {% if error %}
+      <ul class='error'>
+        <li>Não foi possível atualizar os dados do atendimento</li>
+      </ul>
+    {% endif %}
+
+    <div>
+      {% for appointment in appointments | reverse %}
+        <form
+          method="post"
+          action={{ url_for('update_patient_appointment', patient_id=appointment.patient_id, appointment_id=appointment.id) }}
+        >
+          <label for="date">Data</label>
+          <input
+            type="date" name="date"
+            value="{{ appointment.date }}"
+            readonly
+          ></input>
+          <br>
+
+          <label for="reason">Motivo</label>
+          <textarea
+            type="text" name="reason"
+            readonly
+          >{{ appointment.reason }}</textarea>
+          <br>
+
+          <label for="details">Detalhes</label>
+          {% if appointment.details.strip() == '' %}
+            <textarea
+              type="text" name="details"
+              placeholder="Detalhes"
+            ></textarea>
+            <button type="submit">Descrever detalhes</button>
+          {% else %}
+            <textarea
+              type="text" name="details"
+              readonly
+            >{{ appointment.details }}</textarea>
+          {% endif %}
+        </form>
+        <br>
+        <hr>
+      {% endfor %}
+    <div>
+  {% endif %}
+{% endblock %}

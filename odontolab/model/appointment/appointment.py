@@ -9,6 +9,10 @@ class Appointment:
         self.patient_id: int = patient_id
         self.date: date = date.today()
         self.reason: str = reason
+    
+    def __str__(self): 
+        attrs = vars(self)
+        return attrs.__str__()
 
     def __isValid(self) -> bool:
         if self.patient_id <= 0:
@@ -33,3 +37,14 @@ class Appointment:
             return False
         
         return True
+    
+    @staticmethod
+    def from_dict(__dict: dict):
+        appointment = Appointment()
+        appointment.id = __dict.get('id', appointment.id)
+        appointment.details = __dict.get('details', appointment.details)
+        appointment.patient_id = __dict.get('patient_id', appointment.patient_id)
+        appointment.date = __dict.get('date', appointment.date)
+        appointment.reason = __dict.get('reason', appointment.reason)
+        
+        return appointment
