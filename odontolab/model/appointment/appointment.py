@@ -3,11 +3,11 @@ from datetime import date
 
 class Appointment:
     def __init__(self, patient_id: int, reason: str):
-        self.id: int
-        self.details: str
+        self.id: int = 0
+        self.details: str = ''
 
         self.patient_id: int = patient_id
-        self.date: date = date.today
+        self.date: date = date.today()
         self.reason: str = reason
 
     def __isValid(self) -> bool:
@@ -18,6 +18,8 @@ class Appointment:
         if self.reason.strip() == '':
             print('Invalid reason for appointment')
             return False
+        
+        return True
 
     def canBeCreated(self) -> bool:
         return self.__isValid()

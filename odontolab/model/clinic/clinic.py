@@ -4,7 +4,7 @@ from odontolab.model.code import Code
 from odontolab.model.appointment import Appointment, AppointmentService
 
 
-class Clinic():
+class Clinic:
     __currently_serving_code: Code = Code()
     __last_generated_code: Code = Code()
 
