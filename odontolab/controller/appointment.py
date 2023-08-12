@@ -16,7 +16,7 @@ class AppointmentRouter(Router):
             abort(501)
             render_template('appointments.html')
 
-        @self.__app.post('/appointments/next')
+        @self.__app.post('/appointments/next/')
         def call_next_appointments_from_queue():
             """ Call next scheduled patient
             """
@@ -51,7 +51,7 @@ class AppointmentRouter(Router):
             return render_template('patient_appointments.html')
 
 
-        @self.__app.put('/patients/<int:patient_id>/appointments/<int:appointment_id>')
+        @self.__app.put('/patients/<int:patient_id>/appointments/<int:appointment_id>/')
         def update_patient_appointment():
             """ Updates a patients' appointment
             """

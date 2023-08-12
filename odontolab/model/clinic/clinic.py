@@ -18,8 +18,8 @@ class Clinic():
         return cls.__currently_serving_code.current()
 
     @classmethod
-    def callNextServiceCode(cls) -> int:
-        return cls.__currently_serving_code.next()
+    def callNextServiceCode(cls) -> None:
+        cls.__currently_serving_code.next()
 
     @classmethod
     def generateNextServiceCode(cls) -> int:

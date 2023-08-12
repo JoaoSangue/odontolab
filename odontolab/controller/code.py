@@ -14,7 +14,6 @@ class CodeRouter(Router):
             """ Renders view for querying current service code priority
             """
 
-            abort(501)
             code = Clinic.currentlyServing()
             return render_template('codes.html', code=code)
 
@@ -23,7 +22,7 @@ class CodeRouter(Router):
             """ Call next service code from queue
             """
 
-            abort(501)
+            Clinic.callNextServiceCode()
             return redirect(url_for('current_service_code_view'))
 
 
@@ -32,7 +31,6 @@ class CodeRouter(Router):
             """ Renders view for generating a new code for patient to be served
             """
 
-            abort(501)
             return render_template('new_code.html')
 
         @self.__app.post('/code/new/')
@@ -40,6 +38,6 @@ class CodeRouter(Router):
             """ Generate new service code and renders on view
             """
 
-            abort(501)
-            return render_template('new_code.html')
+            code = Clinic.generateNextServiceCode()
+            return render_template('new_code.html', code=code)
     
