@@ -11,7 +11,7 @@ class Persistence(PatientDAO, metaclass=SingletonMeta):
         self.__patients: dict[int, Patient] = dict()
 
     def create(self, patient: Patient) -> tuple[Patient, bool]:
-        if patient.id not in self.__patient:
+        if patient.id not in self.__patients:
             patient.id = len(self.__patients) + 1
             self.__patients[patient.id] = patient
             return patient, True
@@ -19,8 +19,8 @@ class Persistence(PatientDAO, metaclass=SingletonMeta):
         return patient, False
     
     def find(self, cpf: str) -> tuple[Patient, bool]:
-        for patient in self.__appointments.values():
+        for patient in self.__patients.values():
             if patient.cpf == cpf:
-                return patient
+                return patient, True
 
-        return  Patient('', '', 0, '', ''), True
+        return  Patient('', '', 0, '', ''), False

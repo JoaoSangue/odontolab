@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Iniciar atendimento</h1>
+    <form method="post">
+        <label for="cpf">CPF</label>
+        <br>
+        <input
+          type="text" name="cpf"
+          placeholder="123.456.789-00"
+          value="{{ request.form['cpf'] }}">
+        </input>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+{% endblock %}
