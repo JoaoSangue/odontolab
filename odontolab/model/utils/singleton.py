@@ -1,4 +1,7 @@
-class SingletonMeta(type):
+import abc
+
+
+class SingletonMeta(abc.ABCMeta):
     """
     The Singleton class can be implemented in different ways in Python. Some
     possible methods include: base class, decorator, metaclass. We will use the
