@@ -26,7 +26,7 @@ class AppointmentRouter(Router):
 
 
         @self.__app.get('/patients/<int:id>/appointments/new/')
-        def appointment_creation_view():
+        def appointment_creation_view(id: int):
             """ Renders view for creating new appointment for a patient
             """
             
@@ -34,7 +34,7 @@ class AppointmentRouter(Router):
             return render_template('new_appointment.html')
 
         @self.__app.post('/patients/<int:id>/appointments/new/')
-        def create_appointment():
+        def create_appointment(id):
             """ Creates new appointment for a patient
             """
             
@@ -43,7 +43,7 @@ class AppointmentRouter(Router):
         
 
         @self.__app.get('/patients/<int:id>/appointments/')
-        def patient_appointments_view():
+        def patient_appointments_view(id):
             """ Renders view for querying all of a patients' appointments
             """
 
@@ -52,7 +52,7 @@ class AppointmentRouter(Router):
 
 
         @self.__app.put('/patients/<int:patient_id>/appointments/<int:appointment_id>/')
-        def update_patient_appointment():
+        def update_patient_appointment(patient_id, appointment_id):
             """ Updates a patients' appointment
             """
 
