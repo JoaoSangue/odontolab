@@ -4,6 +4,11 @@ from odontolab.model.patient.persistence import Persistence
 
 
 class PatientService:
+    """ PatientService.
+        Service proxying for PatientDAO.
+        Works as a Facade hiding what needs to be done, before persisting data.
+    """   
+
     __persistence: PatientDAO = Persistence()
 
     def __new__(cls):

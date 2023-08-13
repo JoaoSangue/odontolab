@@ -4,6 +4,11 @@ from odontolab.model.appointment.appointmentdao import AppointmentDAO
 
 
 class AppointmentService:
+    """ AppointmentService.
+        Service proxying for AppointmentDAO.
+        Works as a Facade hiding what needs to be done, before persisting data.
+    """   
+
     __persistence: AppointmentDAO = Persistence()
 
     def __new__(cls):
