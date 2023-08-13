@@ -47,8 +47,5 @@ class PatientRouter(Router):
             if ok:
                 return redirect(url_for('appointment_creation_view', id=patient.id))
             
-            # TODO: Fix error handling. It's showing same message for persistence errors
             error = 'Campos inválidos ou vazios no formulário'
             return render_template('new_patient.html', error=error)
-
-

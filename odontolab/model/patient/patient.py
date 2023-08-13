@@ -11,7 +11,6 @@ class Patient:
         self.phone: str = phone
     
     def __isValid(self) -> bool:
-        # TODO: Consider viability of wrapper class for validating specific strings 
         if self.cpf.strip() == '':
             print('Invalid cpf for patient')
             return False
