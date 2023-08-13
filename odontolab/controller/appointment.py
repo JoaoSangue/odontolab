@@ -1,6 +1,5 @@
-from flask import Flask, abort, redirect, render_template, request, url_for
+from flask import redirect, render_template, request, url_for
 
-from odontolab.controller.router import Router
 from odontolab.controller.routerdecorator import RouterDecorator
 from odontolab.model.appointment import AppointmentService, Appointment
 from odontolab.model.clinic import Clinic

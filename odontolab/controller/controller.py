@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for
+from flask import Flask
 from odontolab.controller.appointment import AppointmentRouter
 from odontolab.controller.code import CodeRouter
 from odontolab.controller.mainrouter import MainRouter
