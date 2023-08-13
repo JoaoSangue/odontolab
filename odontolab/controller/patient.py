@@ -1,22 +1,19 @@
-from flask import Flask, abort, flash, redirect, render_template, request, url_for
+from flask import Flask, redirect, render_template, request, url_for
 
 from odontolab.controller.router import Router
+from odontolab.controller.routerdecorator import RouterDecorator
 from odontolab.model.patient import PatientService, Patient
 
-class PatientRouter(Router):
-    def __init__(self, app: Flask):
-        self.__app = app
-
+class PatientRouter(RouterDecorator):
     def defineRoutes(self):
-
-        @self.__app.get('/patients/')
+        @self._router._app.get('/patients/')
         def patient_search_view():
             """ Renders view for querying patients by their CPF
             """
 
             return render_template('patients.html')
 
-        @self.__app.post('/patients/')
+        @self._router._app.post('/patients/')
         def search_patient():
             """ Searches for a patient by CPF
             """
@@ -28,7 +25,7 @@ class PatientRouter(Router):
             return redirect(url_for('patient_creation_view', cpf=cpf))
 
 
-        @self.__app.get('/patients/new/')
+        @self._router._app.get('/patients/new/')
         def patient_creation_view():
             """ Renders view for creating new patients
             """
@@ -36,7 +33,7 @@ class PatientRouter(Router):
             cpf = request.args.get('cpf')
             return render_template('new_patient.html', cpf=cpf)
 
-        @self.__app.post('/patients/new/')
+        @self._router._app.post('/patients/new/')
         def create_patient():
             """ Create new patient
             """
@@ -49,3 +46,5 @@ class PatientRouter(Router):
             
             error = 'Campos inválidos ou vazios no formulário'
             return render_template('new_patient.html', error=error)
+        
+        self._router.defineRoutes()

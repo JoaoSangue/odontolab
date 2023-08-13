@@ -1,8 +1,8 @@
 from flask import Flask
 
-from odontolab.controller import Controller
+from odontolab.controller import Controller, Router
 
 app = Flask(__name__)
 
-controller = Controller(app)
+controller: Router = Controller(app)
 controller.defineRoutes()

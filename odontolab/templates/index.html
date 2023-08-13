@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
   <ul>
-    {% for route in routes %}
+    {% for route in routes | reverse %}
       <li>
         <a href={{ route }}>{{ route }}</a>
       </li>
